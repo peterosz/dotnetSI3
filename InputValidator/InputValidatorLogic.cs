@@ -29,5 +29,15 @@ namespace InputValidatorForm
                 return true;
             return false;
         }
+
+        public static string ReformatPhone(string s)
+        {
+            Match m = Regex.Match(s, @"^\(?(\d{3})\)?[\s\-]?(\d{3})\-?(\d{5})$");
+
+            return String.Format("({0}) {1}-{2}",
+                                 m.Groups[1],
+                                 m.Groups[2],
+                                 m.Groups[3]);
+        }
     }
 }

@@ -26,7 +26,7 @@ namespace InputValidatorForm
                 MessageBox.Show("The name is invalid (only alphabetical characters are allowed)");
             
             if (!validator.ValidPhoneNumber(txtPhone.Text))
-                MessageBox.Show("The phone number is not a valid EU phone number");
+                txtPhone.Text = InputValidatorLogic.ReformatPhone(txtPhone.Text);
 
             if (!validator.ValidEmail(txtEmail.Text))
                 MessageBox.Show("The e-mail address is not valid.");
