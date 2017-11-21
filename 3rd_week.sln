@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputValidator", "InputVali
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputValidatorTests", "InputValidatorTests\InputValidatorTests.csproj", "{6FD46F59-7E9D-48ED-AF73-63FFE9FF86EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConvertTextFileToUTF7", "ConvertTextFileToUTF7\ConvertTextFileToUTF7.csproj", "{F5AC04D7-D49D-46DD-93B4-AF45D980CBD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6FD46F59-7E9D-48ED-AF73-63FFE9FF86EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FD46F59-7E9D-48ED-AF73-63FFE9FF86EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FD46F59-7E9D-48ED-AF73-63FFE9FF86EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5AC04D7-D49D-46DD-93B4-AF45D980CBD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5AC04D7-D49D-46DD-93B4-AF45D980CBD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5AC04D7-D49D-46DD-93B4-AF45D980CBD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5AC04D7-D49D-46DD-93B4-AF45D980CBD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
