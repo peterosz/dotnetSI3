@@ -1,4 +1,4 @@
-﻿namespace InputValidator
+﻿namespace InputValidatorForm
 {
     partial class InputValidator
     {

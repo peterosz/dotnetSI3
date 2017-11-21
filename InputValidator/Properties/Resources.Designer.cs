@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InputValidator.Properties
+namespace InputValidatorForm.Properties
 {
 
 
