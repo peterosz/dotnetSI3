@@ -10,13 +10,13 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace SerializePeople
 {
     [Serializable]
-    public class Person
+    public class Person : IDeserializationCallback
     {
         public enum Genders { Male, Female };
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
         public Genders Gender { get; set; }
-        public int Age;
+        [NonSerialized]int Age;
         static string fileName = "SerializedPeople.binary";
 
         public Person() { }
@@ -71,6 +71,11 @@ namespace SerializePeople
                 }
             }
             Console.WriteLine(person.ToString());
+        }
+
+        public void OnDeserialization(object sender)
+        {
+            Age = DateTime.Now.Year - BirthDate.Year;
         }
     }
 }
