@@ -2,16 +2,18 @@
 using SerializePeople;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SerializePeople.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class PersonTests
     {
         Person testDude;
+        static string fileName = "SerializedPeople.binary";
 
         [TestInitialize]
         public void BeforeEachTest()
@@ -33,6 +35,13 @@ namespace SerializePeople.Tests
                             "\n Age: 27"+
                             "\n Date of Birth: 1990-01-01"+
                             "\n Gender: Male", testDude.ToString());
+        }
+
+        [TestMethod]
+        public void SerializeTest_CreatesAFile()
+        {
+            testDude.Serialize();
+            Assert.AreEqual(true, File.Exists(fileName));
         }
     }
 }

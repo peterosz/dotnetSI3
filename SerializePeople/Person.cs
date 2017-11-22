@@ -10,7 +10,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace SerializePeople
 {
     [Serializable]
-    public class Person : IDeserializationCallback
+    public class Person : IDeserializationCallback, ISerializable
     {
         public enum Genders { Male, Female };
         public string Name { get; set; }
@@ -27,6 +27,14 @@ namespace SerializePeople
             this.Name = Name;
             this.BirthDate = BirthDate;
             this.Gender = Gender;
+            Age = DateTime.Now.Year - BirthDate.Year;
+        }
+
+        public Person(SerializationInfo info, StreamingContext context)
+        {
+            Name = (string)info.GetValue("Name", typeof(string));
+            BirthDate = (DateTime)info.GetValue("BirthDate", typeof(DateTime));
+            Gender = (Genders)info.GetValue("Gender", typeof(Genders));
             Age = DateTime.Now.Year - BirthDate.Year;
         }
 
@@ -76,6 +84,13 @@ namespace SerializePeople
         public void OnDeserialization(object sender)
         {
             Age = DateTime.Now.Year - BirthDate.Year;
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Name", Name, typeof(string));
+            info.AddValue("BirthDate", BirthDate, typeof(DateTime));
+            info.AddValue("Gender", Gender, typeof(Genders));
         }
     }
 }
