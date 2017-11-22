@@ -9,27 +9,25 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SerializePeople
 {
+    [Serializable]
     public class Person
     {
         public enum Genders { Male, Female };
-
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
         public Genders Gender { get; set; }
         public int Age;
-        static int counter;
-        static Dictionary<int,List<string>> people = new Dictionary<int, List<string>>();
+        static string fileName = "SerializedPeople.binary";
 
         public Person() { }
 
         public Person(string Name, DateTime BirthDate, Genders Gender)
         {
-            counter++;
+            
             this.Name = Name;
             this.BirthDate = BirthDate;
             this.Gender = Gender;
             Age = DateTime.Now.Year - BirthDate.Year;
-            people.Add(counter, new List<string> { Name, Age.ToString(), BirthDate.ToString(), Gender.ToString()});
         }
 
         public override string ToString()
@@ -40,31 +38,39 @@ namespace SerializePeople
                    "\n Gender: " + Gender;
         }
 
-        public static void Serialize()
+        public void Serialize()
         {
-            string fileName = "SerializedPeople.txt";
-            FileInfo oldFile = new FileInfo("..\\" +fileName);
-            try
-            {
-                oldFile.Delete();
-            }
-            catch (FileNotFoundException exc)
-            {
-                Console.WriteLine(exc.Message);
-            }
-             
             using (FileStream newTextFile = File.Create(fileName))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 try
-                {
-                    formatter.Serialize(newTextFile, people);
+                {                 
+                    formatter.Serialize(newTextFile, this);
                 }
                 catch (SerializationException ex)
                 {
                     Console.WriteLine("Failed to serialize. Reason: " + ex.Message);
                 }
             }
+        }
+
+        public void Deserialize()
+        {
+            Person person = new Person(); 
+            List<object> deserializedList = new List<object>();
+            using (FileStream openFile = new FileStream(fileName, FileMode.Open))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                try
+                {
+                    person = (Person)formatter.Deserialize(openFile);
+                }
+                catch (SerializationException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            Console.WriteLine(person.ToString());
         }
     }
 }
